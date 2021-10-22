@@ -599,7 +599,7 @@ function componentFactory(definition, context = {}) {
   fn.getToBeRenderedNodes = () => brushArgs.nodes || [];
 
   fn.findShapes = (selector) => {
-    const shapes = rend.findShapes(selector);
+    const shapes = (currentTween?.inProgress() ? currentTween.targetScene : rend).findShapes(selector);
     for (let i = 0, num = shapes.length; i < num; i++) {
       appendComponentMeta(shapes[i]);
     }
